@@ -2,10 +2,32 @@ public class Number {
 
     private String sign;
     private Integer value;
+    private String before_bracket = "(";
+    private String after_bracket = ")";
 
     public Number() {
         this.sign = sign;
         this.value = value;
+
+    }
+
+
+    public String getBefore_bracket() {
+        return before_bracket;
+    }
+
+    public void setBefore_bracket(String before_bracket) {
+        before_bracket = ")";
+        this.before_bracket = before_bracket;
+    }
+
+    public String getAfter_bracket() {
+        return after_bracket;
+    }
+
+    public void setAfter_bracket(String after_bracket) {
+        after_bracket = "(";
+        this.after_bracket = after_bracket;
     }
 
     public Number(String sign, Integer value) {
@@ -80,7 +102,7 @@ public class Number {
             resultSign = number_one.getSign();
         }
         //case when we have division
-        if(number_two.getSign().equals("/")){
+        if (number_two.getSign().equals("/")) {
             result = number_one.getValue() / number_two.getValue();
             resultSign = number_one.getSign();
         }
@@ -89,6 +111,7 @@ public class Number {
         no.setSign(resultSign);
         return no;
     }
+
 
 
     public Integer getValue() {

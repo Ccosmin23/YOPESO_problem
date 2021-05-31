@@ -7,7 +7,8 @@ public class Equation {
 
     private final List<Number> equation= new ArrayList<>();;
     private Number number;
-
+/*    private String before_bracket;
+    private String after_bracket;*/
 
     public Equation(String input) {
         this.setEquation(input);
@@ -25,7 +26,7 @@ public class Equation {
     public void setEquation(String input) {
         //Pattern pattern = Pattern.compile("[[-+0-9]+\s]+[\s+\s0-9]+[\s[-]\s0-9]+[\s+\s[0-9]]+");
         //Pattern pattern = Pattern.compile("[-+0-9]+\s[\s[-*/+]\s0-9]+[\s[-*/+]\s0-9]+[\s[-*/+]\s[0-9]]+");
-        Pattern pattern = Pattern.compile("[(][-+0-9]+\s[\s[-*/+]\s0-9]+[)(\s[-*/+]\s0-9]+[\s[-*/+]\s[0-9])]+");
+        Pattern pattern = Pattern.compile("[-+0-9]+\s[\s[-*/+]\s0-9]+[\s[-*/+]\s0-9]+[\s[-*/+]\s[0-9]]+[\\\\([\s[-*/+]\s[0-9]\\\\)]]+");
         Pattern space_splitter = Pattern.compile("\s");
         Pattern sign_splitter = Pattern.compile("[\s+-]+[\s]+");
 
@@ -103,5 +104,23 @@ public class Equation {
         this.number = number;
     }
 
+/*
+    public String getBefore_bracket() {
+        return before_bracket;
+    }
+
+    public void setBefore_bracket(String before_bracket) {
+        before_bracket = ")";
+        this.before_bracket = before_bracket;
+    }
+
+    public String getAfter_bracket() {
+        return after_bracket;
+    }
+
+    public void setAfter_bracket(String after_bracket) {
+        after_bracket = "(";
+        this.after_bracket = after_bracket;
+    }*/
 
 }
