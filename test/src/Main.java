@@ -3,11 +3,13 @@ public class Main {
     public static void main(String[] args) {
         Number n2 = new Number();
         Number n3 = new Number();
+        Number n4 = new Number();
         Number result = new Number();
-        Number resultNumber;
+        Number resultNumber = new Number();
 
         //Equation e = new Equation("10 + 5 - 3 - 4 + 6");
-        Equation e = new Equation("10 + 5 - 3 - 4 + 6");
+        //Equation e = new Equation(" - 10 + 15 - 3 - 4 + 14 ");
+        Equation e = new Equation("10 + 5 - 3 * (4 + 6) ");
         Equation e1 = new Equation();
 
 
@@ -17,19 +19,92 @@ public class Main {
         }
 
 
-        System.out.println("\nLet's compute the numbers");
+/*        System.out.println("\n\nLet's compute the numbers");
         n2 = e.getEquation().get(0);
         n3 = e.getEquation().get(1);
-        resultNumber = Number.computeNumbers(n2, n3);
-        System.out.println("sign " + resultNumber.getSign() + ", value " + resultNumber.getValue());
+        resultNumber = Number.computeAdditionAndSubtraction(n2, n3);
+        System.out.println("sign " + resultNumber.getSign() + ", value " + resultNumber.getValue());*/
 
-        for (int i = 2; i < e.getEquation().size(); i++) {
-            n2 = resultNumber;
+        //traverse the input to compute multiplication and division
+        for (int i = 0; i < e.getEquation().size(); i++) {
             n3 = e.getEquation().get(i);
-            resultNumber = Number.computeNumbers(n2, n3);
-            System.out.println("sign " + resultNumber.getSign() + ", value " + resultNumber.getValue());
 
+            if (n3.getSign().equals("*")) {
+                n2 = e.getEquation().get(i-1);
+                resultNumber = Number.computeMultiplicationAndDivision(n2, n3);
+                //System.out.println("\nsign " + resultNumber.getSign() + ", value " + resultNumber.getValue());
+                e.getEquation().set(i-1, resultNumber);
+                e.getEquation().remove(i);
+                //n3.setValue(0);
+            } else if (n3.getSign().equals("/")) {
+                n2 = e.getEquation().get(i-1);
+                resultNumber = Number.computeMultiplicationAndDivision(n2, n3);
+                //System.out.println("\nsign " + resultNumber.getSign() + ", value " + resultNumber.getValue());
+                e.getEquation().set(i-1, resultNumber);
+                e.getEquation().remove(i);
+                //n3.setValue(0);
+            }
+            //System.out.println("sign " + resultNumber.getSign() + ", value " + resultNumber.getValue());
         }
+
+        //traverse the input to compute addition and subtraction
+        System.out.println("\nLast result without brackets");
+        n2 = e.getEquation().get(0);
+        for (int i = 1; i < e.getEquation().size(); i++) {
+            n3 = e.getEquation().get(i);
+            if (n3.getSign().equals("+")) {
+                //n2 = e.getEquation().get(i);
+                resultNumber = Number.computeAdditionAndSubtraction(n2, n3);
+                //System.out.println("sign " + resultNumber.getSign() + ", value " + resultNumber.getValue());
+            }
+            else{
+                resultNumber = Number.computeAdditionAndSubtraction(n2, n3);
+               // System.out.println("sign " + resultNumber.getSign() + ", value " + resultNumber.getValue());
+            }
+            n2 = resultNumber;
+        }
+        System.out.println("sign " + n2.getSign() + ", result " + n2.getValue());
+
+
+
+
+
+
+
+
+
+
+
+
+/*        System.out.println("\nnumbers remained in the input =");
+        for (int i = 0; i < e.getEquation().size(); i++) {
+            System.out.println( e.getEquation().get(i).getValue()+ " ");
+        }*/
+
+
+
+
+
+
+
+       /* for (int i = 0; i < e.getEquation().size(); i++) {
+            n2 = e.getEquation().get(i);
+            n3 = e.getEquation().get(i + 1);
+            resultNumber = Number.computeMultiplicationAndDivision(n2, n3);
+        }*/
+
+
+
+
+
+/*        System.out.println("\n\nLet's compute one more time the numbers");
+        n2 = e.getEquation().get(4);
+        n3 = e.getEquation().get(5);
+        resultNumber = Number.computeMultiplicationAndDivision(n2, n3);
+        System.out.println("sign " + resultNumber.getSign() + ", value " + resultNumber.getValue());*/
+
+
+
         /*
 
             n2 = e.getEquation().get(0);
@@ -51,11 +126,11 @@ public class Main {
             n3 = e.getEquation().get(4);
             resultNumber = Number.computeNumbers(n2, n3);
             System.out.println("sign " + resultNumber.getSign() + ", value " + resultNumber.getValue());*/
-        //}
+    //}
 
-        //equation.add(n1);
+    //equation.add(n1);
 
-    }
+}
 
 
 

@@ -14,9 +14,11 @@ public class Number {
         System.out.println("sign " + getSign() + ", value = " + getValue());
     }
 
-    public static Number computeNumbers(Number number_one, Number number_two) {
+    public static Number computeAdditionAndSubtraction(Number number_one, Number number_two) {
         int result = 0;
         String resultSign = "";
+        Number no = new Number();
+
         // case when both number's signs are same
         if (number_one.getSign().equals(number_two.getSign())) {
             //case when we have addition
@@ -61,12 +63,33 @@ public class Number {
             }*/
         }
 
-        Number no = new Number();
         no.setValue(result);
         no.setSign(resultSign);
 
         return no;
     }
+
+    public static Number computeMultiplicationAndDivision(Number number_one, Number number_two) {
+        int result = 0;
+        String resultSign = "";
+        Number no = new Number();
+
+        //case when we have multiplication
+        if (number_two.getSign().equals("*")) {
+            result = number_one.getValue() * number_two.getValue();
+            resultSign = number_one.getSign();
+        }
+        //case when we have division
+        if(number_two.getSign().equals("/")){
+            result = number_one.getValue() / number_two.getValue();
+            resultSign = number_one.getSign();
+        }
+
+        no.setValue(result);
+        no.setSign(resultSign);
+        return no;
+    }
+
 
     public Integer getValue() {
         return value;

@@ -23,16 +23,18 @@ public class Equation {
     }
 
     public void setEquation(String input) {
-        Pattern pattern = Pattern.compile("[[-+0-9]+\s]+[\s+\s0-9]+[\s[-]\s0-9]+[\s+\s[0-9]]+");
+        //Pattern pattern = Pattern.compile("[[-+0-9]+\s]+[\s+\s0-9]+[\s[-]\s0-9]+[\s+\s[0-9]]+");
+        //Pattern pattern = Pattern.compile("[-+0-9]+\s[\s[-*/+]\s0-9]+[\s[-*/+]\s0-9]+[\s[-*/+]\s[0-9]]+");
+        Pattern pattern = Pattern.compile("[(][-+0-9]+\s[\s[-*/+]\s0-9]+[)(\s[-*/+]\s0-9]+[\s[-*/+]\s[0-9])]+");
         Pattern space_splitter = Pattern.compile("\s");
         Pattern sign_splitter = Pattern.compile("[\s+-]+[\s]+");
 
         Matcher matcher = pattern.matcher(input);
 
         if (matcher.find()) {
-            System.out.println("match found with value =" + matcher.group());
+            System.out.println("\nmatch found with value =" + matcher.group());
         } else {
-            System.out.println("match not found within constructor equation");
+            System.out.println("\nmatch not found within constructor equation");
         }
 
         System.out.println("\ninput =" + input);
